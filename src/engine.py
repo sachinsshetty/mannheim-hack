@@ -44,7 +44,8 @@ def bundle_function(articles):
             expires_at = datetime.strptime(expires_at_str, '%Y-%m-%d')
             days_to_expire = (expires_at - current_date).days
 
-            if stock > 15 and demand < 10:
+            #TODO change days to expire to e.g. 3 / 10
+            if days_to_expire<300 or (stock > 15 and demand < 10 and days_to_expire<500):
                 bundle_articles.append(article)
 
         except (ValueError, TypeError):
@@ -56,20 +57,14 @@ def bundle_function(articles):
 
 
 
-def propose_recipes(bundle_articles, articles):
-    print(bundle_articles)
-    print(articles)
-
-    if bundle_articles and articles:
+def propose_recipes(bundle_articles):
+    if bundle_articles:
         bundle_article_names = ', '.join([article.get('name') for article in bundle_articles])
-
-        article_names = ', '.join([article.get('name') for article in articles])
 
         prompt = (
             f"Give me recipes where all these Bundle articles could be used. My goal is that all items in Bundle articles "
-            f"are used in a recipe. You are only allowed to additionally use the articles in Articles.\n"
-            f"Bundle articles: {bundle_article_names}\n"
-            f"Articles: {article_names}"
+            f"are used in a recipe."
+            f"Bundle articles: {bundle_article_names}"
         )
 
         return prompt
@@ -170,7 +165,7 @@ def main():
         level_1_prompt = json_parser(json_objs)
         #print(level_1_prompt)
         bundle_articles = bundle_function(json_objs)
-        execute_prompt(propose_recipes(bundle_articles, json_objs))
+        execute_prompt(propose_recipes(bundle_articles))
     except FileNotFoundError:
         print("The file 'articles.json' was not found.")
     except json.JSONDecodeError:
