@@ -65,7 +65,7 @@ def propose_recipes(bundle_articles):
 
         prompt = (
             f"Give me recipes where all these Bundle articles could be used. My goal is that all items in Bundle articles "
-            f"are used in a recipe."
+            f"are used in a recipe. Seperate the response in three parts. 1. Name of the recipe, 2. Ingredients for the recipe, 3. Steps in the recipe. Answer in a JSON Format"
             f"Bundle articles: {bundle_article_names}"
         )
 
