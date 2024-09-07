@@ -7,6 +7,7 @@ app = Flask(__name__)
 def execute_prompt_route():
     data = request.get_json()
     prompt = data.get('prompt')
+    print(prompt)
     result = execute_prompt(prompt)
     return jsonify(result)
 
