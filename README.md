@@ -27,6 +27,11 @@
 
 curl -X POST -H "Content-Type: application/json" -d '{"prompt": "Your prompt here"}' http://localhost:5000/execute_prompt
 
+
+curl -X GET http://localhost:5000/recipe_generate
+
+
+
 Challenge for Hackfestiva
 
 
