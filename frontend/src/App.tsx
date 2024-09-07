@@ -72,16 +72,15 @@ class App extends Component<{}, AppState> {
   };
 
   sendImageToOllama = async () => {
-    //if (!this.state.base64StringImage) return;
     
     const ollamaEndpoint = "http://127.0.0.1:5000/recipe_generate" ;
 
     try {
       const response = await  axios.get(ollamaEndpoint);
       console.log(response.data); // Log the response data to the console
-      console.log('Analyse result:', response.data.message.content);
-      this.setState({ response: response.data.message.content });
-      return response.data.message.content;
+      console.log('Analyse result:', response.data);
+      this.setState({ response: response.data });
+      return response.data;
     } catch (error) {
       console.error('Error Process JSON:', (error as AxiosError).message);
       throw error;

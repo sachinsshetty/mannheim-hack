@@ -25,7 +25,7 @@ def execute_prompt(prompt):
         for resp in responses:
             try:
                 result = json.loads(resp)
-                print(result.get('response', ''))
+                #print(result.get('response', ''))
                 output += result.get('response', '') + '\n'
             except json.JSONDecodeError:
                 print(f"Error decoding JSON: {resp}")
