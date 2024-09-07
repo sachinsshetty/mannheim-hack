@@ -3,7 +3,7 @@ import json
 def execute_prompt(prompt):
 
 
-    url = "http://localhost:11434/api/generate"
+    url = "http://10.211.137.191:11434/api/generate"
     headers = {"Content-Type": "application/json"}
     data = {
         #"model": "mistral",
@@ -46,7 +46,7 @@ def bundle_function(articles):
                 bundle_articles.append(article)
 
         except (ValueError, TypeError):
-            print(f"Fehler beim Verarbeiten des Ablaufdatums für Artikel: {article.get('name', 'Unbekannt')}")
+            print(f"Fehler beim Verarbeiten des Ablaufdatums für Artikel: {article.get('name', 'Unbekannt')} in bundle_function")
 
     return bundle_articles
 
@@ -54,6 +54,26 @@ def bundle_function(articles):
 
 
 
+def propose_recipes(bundle_articles, articles):
+    if bundle_articles and articles:
+        # Erstelle eine Liste der Namen der Artikel in bundle_articles
+        bundle_article_names = ', '.join([article.get('name', 'unknown item') for article in bundle_articles])
+
+        # Erstelle eine Liste der Namen der Artikel in articles
+        article_names = ', '.join([article.get('name', 'unknown item') for article in articles])
+
+        # Baue den Prompt auf
+        prompt = (
+            f"Give me recipes where all these items could be used. My goal is that all items in bundle_articles "
+            f"are used in a recipe. You are only allowed to additionally use the articles in articles.\n"
+            f"Bundle articles: {bundle_article_names}\n"
+            f"Available additional articles: {article_names}"
+        )
+
+        return prompt
+
+    else:
+        return "Tell me a joke."
 
 
 
@@ -137,12 +157,13 @@ def get_json_objects():
 def main():
     
     try:
-        discount_function()
+        #discount_function()
         # Opening JSON file
         json_objs = get_json_objects()
         level_1_prompt = json_parser(json_objs)
-        print(level_1_prompt)
-        execute_prompt(level_1_prompt)
+        #print(level_1_prompt)
+        bundle_articles = bundle_function(json_objs)
+        execute_prompt(propose_recipes(bundle_articles, json_objs))
     except FileNotFoundError:
         print("The file 'articles.json' was not found.")
     except json.JSONDecodeError:
