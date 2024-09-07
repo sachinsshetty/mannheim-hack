@@ -1,6 +1,5 @@
 import requests
 import json
-from datetime import datetime
 def execute_prompt(prompt):
 
 
@@ -26,6 +25,40 @@ def execute_prompt(prompt):
 
     else:
         print(f"Error: {response.status_code}")
+
+
+from datetime import datetime
+
+def bundle_function(articles):
+    current_date = datetime.now()
+    bundle_articles = []
+
+    for article in articles:
+        demand = article.get('demand')
+        stock = article.get('stock')
+        expires_at_str = article.get('expiresAt')
+
+        try:
+            expires_at = datetime.strptime(expires_at_str, '%Y-%m-%d')
+            days_to_expire = (expires_at - current_date).days
+
+            if days_to_expire < 3 or (stock > 15 and demand < 10 and days_to_expire < 10):
+                bundle_articles.append(article)
+
+        except (ValueError, TypeError):
+            print(f"Fehler beim Verarbeiten des Ablaufdatums für Artikel: {article.get('name', 'Unbekannt')}")
+
+    return bundle_articles
+
+
+
+
+
+
+
+
+
+
 
 
 def discount_function():
