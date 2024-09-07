@@ -56,18 +56,15 @@ def bundle_function(articles):
 
 def propose_recipes(bundle_articles, articles):
     if bundle_articles and articles:
-        # Erstelle eine Liste der Namen der Artikel in bundle_articles
         bundle_article_names = ', '.join([article.get('name', 'unknown item') for article in bundle_articles])
 
-        # Erstelle eine Liste der Namen der Artikel in articles
         article_names = ', '.join([article.get('name', 'unknown item') for article in articles])
 
-        # Baue den Prompt auf
         prompt = (
-            f"Give me recipes where all these items could be used. My goal is that all items in bundle_articles "
-            f"are used in a recipe. You are only allowed to additionally use the articles in articles.\n"
+            f"Give me recipes where all these Bundle articles could be used. My goal is that all items in Bundle articles "
+            f"are used in a recipe. You are only allowed to additionally use the articles in Articles.\n"
             f"Bundle articles: {bundle_article_names}\n"
-            f"Available additional articles: {article_names}"
+            f"Articles: {article_names}"
         )
 
         return prompt
