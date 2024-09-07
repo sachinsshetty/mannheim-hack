@@ -1,3 +1,5 @@
+import random
+
 import requests
 import json
 def execute_prompt(prompt):
@@ -42,7 +44,7 @@ def bundle_function(articles):
             expires_at = datetime.strptime(expires_at_str, '%Y-%m-%d')
             days_to_expire = (expires_at - current_date).days
 
-            if days_to_expire < 3 or (stock > 15 and demand < 10 and days_to_expire < 10):
+            if stock > 15 and demand < 10:
                 bundle_articles.append(article)
 
         except (ValueError, TypeError):
@@ -55,10 +57,13 @@ def bundle_function(articles):
 
 
 def propose_recipes(bundle_articles, articles):
-    if bundle_articles and articles:
-        bundle_article_names = ', '.join([article.get('name', 'unknown item') for article in bundle_articles])
+    print(bundle_articles)
+    print(articles)
 
-        article_names = ', '.join([article.get('name', 'unknown item') for article in articles])
+    if bundle_articles and articles:
+        bundle_article_names = ', '.join([article.get('name') for article in bundle_articles])
+
+        article_names = ', '.join([article.get('name') for article in articles])
 
         prompt = (
             f"Give me recipes where all these Bundle articles could be used. My goal is that all items in Bundle articles "
@@ -145,10 +150,15 @@ def get_json_objects():
 
     except Exception as e:
         print(f"An error occurred: {e}")
-    
-    # debug - 
-    first_five_objects = json_object[:5]
-    return first_five_objects
+
+    for article in json_object:
+        article['demand'] = random.randint(1, 10)
+        article['stock'] = random.randint(15, 90)
+
+
+    # debug -
+    first_ten_objects = json_object[:10]
+    return first_ten_objects
     #return json_object 
 
 def main():
