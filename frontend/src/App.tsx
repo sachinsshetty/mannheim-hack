@@ -24,8 +24,8 @@ class App extends Component<{}, AppState> {
       prompt: '',
       uploadedImage: null,
       isLoading: false,
-      models: ['moondream', 'llava'], 
-      selectedModel: 'moondream', 
+      models: ['mistral', 'mistral-nemo'], 
+      selectedModel: 'mistral-nemo'
     };
   }
 
@@ -103,15 +103,14 @@ class App extends Component<{}, AppState> {
   };
 
   sendImageToOllama = async () => {
-    if (!this.state.base64StringImage) return;
+    //if (!this.state.base64StringImage) return;
     
     const requestBody = {
-      model: 'moondream',
+      model: 'mistral-nemo',
       messages: [
         {
           role: 'user',
-          content: this.state.prompt,
-          images: [this.state.base64StringImage]
+          content: this.state.prompt
         }
       ],
       stream: false
@@ -145,14 +144,11 @@ class App extends Component<{}, AppState> {
             placeholder="Enter your prompt here..."
             fullWidth
           />
-            <input 
-              type="file" 
-              onChange={this.handleImageUpload} 
-          />
+
           <button 
             onClick={this.sendImageToOllama} 
             disabled={this.state.isLoading}>
-            {this.state.isLoading ? 'Processing...' : 'Upload'}
+            {this.state.isLoading ? 'Processing...' : 'Analyse'}
           </button>
           <select 
             value={this.state.selectedModel} 
