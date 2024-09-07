@@ -18,6 +18,12 @@
     - python engine.py
 
 
+- Build Frontend
+    - docker build -t slabstech/mannheim-ui -f Dockerfile .
+
+- Run Docker
+    - cd src
+    - docker compose -f docker-compose.yml up -d
 
 
 Challenge for Hackfestiva
