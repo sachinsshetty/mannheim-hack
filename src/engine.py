@@ -1,5 +1,7 @@
 import random
 
+import pandas as pd
+import numpy as np
 import requests
 import json
 
@@ -118,6 +120,17 @@ def price_reduction(time_to_expiration, product_type, demand, stock):
     reduction_percentage = ((expiration_factor + stock_demand_factor) * product_factor)
     # Cap the discount between 0% and 80%
     return min(max(reduction_percentage * 100, 0), 80)
+
+
+def compute_reduced_prices(json_file, as_json=True):
+    df = pd.read_json(json_file)
+    df["product_type"] = 1
+    df["time_to_expiration"] = np.random.rand(len(df.index))
+    df["demand"] = np.random.rand(len(df.index))
+    df["stock"] = np.random.rand(len(df.index))
+    df["discount"] = df.apply(lambda row: price_reduction(row['time_to_expiration'], row['product_type'], row['demand'], row['stock']), axis=1)
+    df["discounted_price"] = df["price"] * (1 - df["discount"] / 100)
+    return df.to_json() if as_json is True else df
 
 
 def json_parser(api_json):
