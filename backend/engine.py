@@ -1,5 +1,3 @@
-import random
-
 import pandas as pd
 import numpy as np
 import requests
@@ -12,8 +10,8 @@ def execute_prompt(prompt):
     url = "http://10.211.137.191:11434/api/generate"
     headers = {"Content-Type": "application/json"}
     data = {
-        #"model": "mistral",
-        "model": "mistral-nemo",
+        "model": "mistral",
+        #"model": "mistral-nemo",
         "prompt": prompt,
         "stream": False
     }
@@ -25,7 +23,7 @@ def execute_prompt(prompt):
         for resp in responses:
             try:
                 result = json.loads(resp)
-                #print(result.get('response', ''))
+                print(result.get('response', ''))
                 output += result.get('response', '') + '\n'
             except json.JSONDecodeError:
                 print(f"Error decoding JSON: {resp}")
@@ -42,8 +40,8 @@ def bundle_function(articles):
     bundle_articles = []
 
     for article in articles:
-        demand = article.get('demand')
-        stock = article.get('stock')
+        demand = article.get('demand')*100-100
+        stock = article.get('stock')*100+15
         expires_at_str = article.get('expiresAt')
 
         try:
@@ -51,7 +49,7 @@ def bundle_function(articles):
             days_to_expire = (expires_at - current_date).days
 
             #TODO change days to expire to e.g. 3 / 10
-            if days_to_expire<300 or (stock > 15 and demand < 10 and days_to_expire<500):
+            if days_to_expire<3 or (stock > 15 and demand < 10 and days_to_expire<300):
                 bundle_articles.append(article)
 
         except (ValueError, TypeError):
@@ -68,7 +66,7 @@ def propose_recipes(bundle_articles):
         bundle_article_names = ', '.join([article.get('name') for article in bundle_articles])
 
         prompt = (
-            f"Give me recipes where all these Bundle articles could be used. My goal is that all items in Bundle articles "
+            f"Give me some recipes where the Bundle articles could be used. My goal is that all items in Bundle articles "
             f"are used in a recipe. Seperate the response in three parts. 1. Name of the recipe, 2. Ingredients for the recipe, 3. Steps in the recipe. Answer in a JSON Format"
             f"Bundle articles: {bundle_article_names}"
         )
@@ -124,15 +122,17 @@ def price_reduction(time_to_expiration, product_type, demand, stock):
     return min(max(reduction_percentage * 100, 0), 80)
 
 
-def compute_reduced_prices(json_file, as_json=True):
-    df = pd.read_json(json_file)
+def compute_reduced_prices(as_json=True):
+    df = pd.read_json('../data/articles.json')
     df["product_type"] = 1
     df["time_to_expiration"] = np.random.rand(len(df.index))
     df["demand"] = np.random.rand(len(df.index))
     df["stock"] = np.random.rand(len(df.index))
     df["discount"] = df.apply(lambda row: price_reduction(row['time_to_expiration'], row['product_type'], row['demand'], row['stock']), axis=1)
     df["discounted_price"] = df["price"] * (1 - df["discount"] / 100)
-    return df.to_json() if as_json is True else df
+    df = df.drop(columns=['weight', 'packagingUnit', 'available'])
+
+    return df.to_json(orient="records") if as_json is True else df
 
 
 def json_parser(api_json):
@@ -157,11 +157,11 @@ def json_parser(api_json):
     """.format(api_json)
 
     categorize_articles=  """
-    Put the food into 3 categories. Long living food, middle living food, short living food.
+    Put the food into 3 categories. Long living food with the criteria: time to expiration greater than 3 months, middle living food with the criteria: time to expiration greater than 2 weeks and less than 3 months, short living food with the criteria: time to expiration less than 2 weeks.
     JSON DATA = {}
     """.format(api_json)
 
-    return explicit_prompt
+    return categorize_articles
   
 def get_json_objects():
     try:
@@ -173,25 +173,24 @@ def get_json_objects():
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    for article in json_object:
-        article['demand'] = random.randint(1, 10)
-        article['stock'] = random.randint(15, 90)
-
 
     # debug -
     first_ten_objects = json_object[:10]
     return first_ten_objects
-    #return json_object 
+    #return json_object
 
 def main():
     
     try:
-        #discount_function()
-        # Opening JSON file
-        json_objs = get_json_objects()
-        level_1_prompt = json_parser(json_objs)
-        #print(level_1_prompt)
-        bundle_articles = bundle_function(json_objs)
+        json_objs = compute_reduced_prices()
+        obj= json.loads(json_objs)
+        print(obj)
+        #chunk_size = 100
+        #for i in range(0,len(obj), chunk_size):
+            #chunk = obj[i: i+chunk_size]
+        #level_1_prompt = json_parser(obj[:10])
+        #execute_prompt(level_1_prompt)
+        bundle_articles = bundle_function(obj[:10])
         execute_prompt(propose_recipes(bundle_articles))
     except FileNotFoundError:
         print("The file 'articles.json' was not found.")
