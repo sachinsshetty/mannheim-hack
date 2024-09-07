@@ -5,10 +5,9 @@ import './App.css'
 import TextField from '@mui/material/TextField';
 
 interface AppState {
-  base64StringImage: string | null;
   response: any;
   prompt: string;
-  uploadedImage: string | null;
+  json_api: string;
   isLoading: boolean;
   models: string[]; 
   selectedModel: string; 
@@ -19,10 +18,14 @@ class App extends Component<{}, AppState> {
   constructor(props:{}) {
     super(props);
     this.state = {
-      base64StringImage: null,
       response: null,
-      prompt: '',
-      uploadedImage: null,
+      prompt: '1. State the name of the food item.' +
+        '2. Mention the expiration date to raise awareness about freshness.' +
+        '3. Describe the best storage practices to prolong shelf life.'+
+        '4. List creative ways to use the food item to encourage consumption before it spoils.'+
+        '5. Provide actionable tips for minimizing waste, such as recipes or preservation methods.'+
+        'JSON DATA = {}',
+      json_api: '[{"id":"8376291","name":"Organic Cherry Tomatoes","expiresAt":"2024-09-23","price":2.99,"weight":"250g","packagingUnit":"punnet","available":48},{"id":"5728364","name":"Sweet Potatoes","expiresAt":"2024-10-15","price":1.79,"weight":"1kg","packagingUnit":"bag","available":23},{"id":"9126483","name":"Broccoli Florets","expiresAt":"2024-09-18","price":2.49,"weight":"400g","packagingUnit":"bag","available":17},{"id":"4537281","name":"Red Bell Peppers","expiresAt":"2024-12-02","price":1.29,"weight":"500g","packagingUnit":"each","available":62},{"id":"1928374","name":"Baby Spinach","expiresAt":"2024-09-27","price":3.99,"weight":"150g","packagingUnit":"bag","available":8},{"id":"6273849","name":"White Onions","expiresAt":"2025-01-10","price":0.79,"weight":"1kg","packagingUnit":"bag","available":41}]',
       isLoading: false,
       models: ['mistral', 'mistral-nemo'], 
       selectedModel: 'mistral-nemo'
@@ -72,29 +75,14 @@ class App extends Component<{}, AppState> {
     }
   };
 
-  handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        if (typeof reader.result === 'string') {
-          this.setState({ 
-            base64StringImage: reader.result.split(',')[1],
-            uploadedImage: reader.result, 
-          });
-        }
-      }
-      reader.readAsDataURL(file);
-    } else {
-      // handle the case where no file was selected
-    }
-  };
-
   handlePromptChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({ prompt: event.target.value });
   };
+
+  handleJsonAPI = (event: ChangeEvent<HTMLInputElement>) => {
+    this.setState({ json_api: event.target.value });
+  };
+
 
   handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ selectedModel: event.target.value }, () => {
@@ -110,7 +98,7 @@ class App extends Component<{}, AppState> {
       messages: [
         {
           role: 'user',
-          content: this.state.prompt
+          content: this.state.prompt + ' ' +  this.state.json_api
         }
       ],
       stream: false
@@ -121,11 +109,11 @@ class App extends Component<{}, AppState> {
     try {
       const response = await axios.post(ollamaEndpoint, requestBody);
       console.log("Prompt - ", this.state.prompt);
-      console.log('Image processing result:', response.data.message.content);
+      console.log('Analyse result:', response.data.message.content);
       this.setState({ response: response.data.message.content });
       return response.data.message.content;
     } catch (error) {
-      console.error('Error processing image:', (error as AxiosError).message);
+      console.error('Error Process JSON:', (error as AxiosError).message);
       throw error;
     }
   };
@@ -142,6 +130,12 @@ class App extends Component<{}, AppState> {
             value={this.state.prompt}
             onChange={this.handlePromptChange}
             placeholder="Enter your prompt here..."
+            fullWidth
+          />
+          <TextField
+            value={this.state.json_api}
+            onChange={this.handleJsonAPI}
+            placeholder="Enter your JSON here..."
             fullWidth
           />
 
