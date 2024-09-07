@@ -22,9 +22,10 @@
     - docker build -t slabstech/mannheim-ui -f Dockerfile .
 
 - Run Docker
-    - cd src
     - docker compose -f docker-compose.yml up -d
 
+
+curl -X POST -H "Content-Type: application/json" -d '{"prompt": "Your prompt here"}' http://localhost:5000/execute_prompt
 
 Challenge for Hackfestiva
 
