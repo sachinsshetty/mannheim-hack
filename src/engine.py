@@ -17,18 +17,20 @@ def execute_prompt(prompt):
     }
 
     response = requests.post(url, headers=headers, data=json.dumps(data))
-
+    output = ""
     if response.status_code == 200:
         responses = response.text.strip().split('\n')
         for resp in responses:
             try:
                 result = json.loads(resp)
                 print(result.get('response', ''))
+                output += result.get('response', '') + '\n'
             except json.JSONDecodeError:
                 print(f"Error decoding JSON: {resp}")
 
     else:
         print(f"Error: {response.status_code}")
+    return output.strip()
 
 
 from datetime import datetime
