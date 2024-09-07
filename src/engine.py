@@ -2,6 +2,8 @@ import random
 
 import requests
 import json
+
+
 def execute_prompt(prompt):
 
 
@@ -71,10 +73,6 @@ def propose_recipes(bundle_articles):
 
     else:
         return "Tell me a joke."
-
-
-
-
 
 
 
