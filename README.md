@@ -1,4 +1,25 @@
 # mannheim-hack
+
+- Installation
+
+-   Ubuntu 
+    python -m venv venv
+    source venv/bin/activate
+
+    pip install -r requirements.txt
+
+- Windows
+    - python.exe -m venv venv
+    - .\venv\Scripts\activate
+    - pip install -r requirements.txt
+
+- Run program
+    - cd src
+    - python engine.py
+
+
+
+
 Challenge for Hackfestiva
 
 
