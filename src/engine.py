@@ -1,6 +1,6 @@
 import requests
 import json
-
+from datetime import datetime
 def execute_prompt(prompt):
 
 
@@ -28,6 +28,36 @@ def execute_prompt(prompt):
         print(f"Error: {response.status_code}")
 
 
+def discount_function():
+    try:
+        articles = get_json_objects()
+        current_date = datetime.now()
+
+        for article in articles:
+            name = article.get('name')
+            expiration_date_str = article.get('expiresAt')
+            price = article.get('price')
+            available = article.get('available')
+
+            if name and price and available and expiration_date_str:
+                try:
+                    expiration_date = datetime.strptime(expiration_date_str, '%Y-%m-%d')
+
+                    days_to_expiration = (expiration_date - current_date).days
+
+                    if days_to_expiration < 30:
+                        discount_price = price * 0.90  # 10% Rabatt
+                        print(f"{name}: Originalpreis: {price:.2f}€, Rabattpreis: {discount_price:.2f}€, Ablaufdatum in {days_to_expiration} Tagen")
+
+                except ValueError:
+                    print(f"Fehler bei der Verarbeitung des Ablaufdatums für {name}")
+            else:
+                print(f"Unvollständige Daten für Artikel: {name if name else 'Unbekannt'}")
+
+    except Exception as e:
+        print(f"Ein Fehler ist aufgetreten: {e}")
+
+
 def json_parser(api_json):
 
     explicit_prompt = """
@@ -46,6 +76,11 @@ def json_parser(api_json):
     """.format(api_json)
 
     few_shot_cots = """
+    JSON DATA = {}
+    """.format(api_json)
+
+    categorize_articles=  """
+    Put the food into 3 categories. Long living food, middle living food, short living food.
     JSON DATA = {}
     """.format(api_json)
 
@@ -69,6 +104,7 @@ def get_json_objects():
 def main():
     
     try:
+        discount_function()
         # Opening JSON file
         json_objs = get_json_objects()
         level_1_prompt = json_parser(json_objs)
