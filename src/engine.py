@@ -29,7 +29,7 @@ def execute_prompt(prompt):
 
 def json_parser(api_json):
 
-    prompt = """
+    explicit_prompt = """
     1. State the name of the food item.
     2. Mention the expiration date to raise awareness about freshness.
     3. Describe the best storage practices to prolong shelf life.
@@ -38,21 +38,39 @@ def json_parser(api_json):
     JSON DATA = {}
     """.format(api_json)
     
-    return prompt
+
+    implicit_prompt = """
+    Analyse the data about food items, Lets think step by step
+    JSON DATA = {}
+    """.format(api_json)
+
+    few_shot_cots = """
+    JSON DATA = {}
+    """.format(api_json)
+
+    return explicit_prompt
   
-def main():
-    
+def get_json_objects():
     try:
-        # Opening JSON file
         with open('../data/articles.json', 'r') as openfile:
         # Reading from json file
             json_object = json.load(openfile)
 
-        #print(json_object)
-        # Get the first 5 objects
-        first_five_objects = json_object[:5]
-        print(first_five_objects)
-        level_1_prompt = json_parser(first_five_objects)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
+    # debug - 
+    #first_five_objects = json_object[:5]
+    # return first_five_objects
+    return json_object 
+
+def main():
+    
+    try:
+        # Opening JSON file
+        json_objs = get_json_objects()
+        level_1_prompt = json_parser(json_objs)
         print(level_1_prompt)
         execute_prompt(level_1_prompt)
     except FileNotFoundError:

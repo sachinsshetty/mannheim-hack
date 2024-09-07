@@ -1,0 +1,45 @@
+Prompt -  Full Articles JSON
+
+    1. State the name of the food item.
+    2. Mention the expiration date to raise awareness about freshness.
+    3. Describe the best storage practices to prolong shelf life.
+    4. List creative ways to use the food item to encourage consumption before it spoils.
+    5. Provide actionable tips for minimizing waste, such as recipes or preservation methods.
+
+
+ Here is a list of items with their details such as ID, Name, Expires Date, Price, Weight, Packaging Unit, and Available quantity:
+
+   1. Item ID: 6549213, Name: Coconut Oil, Expires At: 2023-12-31, Price: $12.99, Weight: 500 ml, Packaging Unit: Bottle, Available: 8
+   2. Item ID: 8273946, Name: Flaxseed Oil, Expires At: 2024-12-28, Price: $8.59, Weight: 250 ml, Packaging Unit: Bottle, Available: 9
+   3. Item ID: 4728391, Name: Organic Ghee, Expires At: 2025-02-05, Price: $14.99, Weight: 500 ml, Packaging Unit: Jar, Available: 6
+   4. Item ID: 1928373, Name: Peanut Oil, Expires At: 2024-10-02, Price: $4.29, Weight: 1 l, Packaging Unit: Bottle, Available: 27
+   5. Item ID: 1379285, Name: Kidney Beans, Organic, 500g, Expires At: 2024-10-25, Price: $2.49, Weight: 500g, Packaging Unit: Bag, Available: 63
+   6. Item ID: 5937481, Name: Chickpeas, Dried, 1kg, Expires At: 2025-03-11, Price: $3.99, Weight: 1kg, Packaging Unit: Bag, Available: 120
+   7. Item ID: 2837468, Name: Lentils, Green, 250g, Expires At: 2024-09-18, Price: $1.79, Weight: 250g, Packaging Unit: Bag, Available: 48
+   8. Item ID: 7492831, Name: Black Beans, Canned, 400g, Expires At: 2025-08-02, Price: $1.29, Weight: 400g, Packaging Unit: Can, Available: 200
+   9. Item ID: 9283748, Name: Pinto Beans, Dried, 500g, Expires At: 2024-12-05, Price: $2.79, Weight: 500g, Packaging Unit: Bag, Available: 75
+   10. Item ID: 1728391, Name: Mung Beans, Whole, 1kg, Expires At: 2025-01-14, Price: $4.99, Weight: 1kg, Packaging Unit: Bag, Available: 92
+   11. Item ID: 6283742, Name: Fava Beans, Dried, 250g, Expires At: 2024-11-09, Price: $2.29, Weight: 250g, Packaging Unit: Bag, Available: 35
+   12. Item ID: 3847292, Name: Adzuki Beans, Organic, 500g, Expires At: 2025-04-22, Price: $3.79, Weight: 500g, Packaging Unit: Bag, Available: 58
+   13. Item ID: 5928372, Name: Soybeans, Yellow, 1kg, Expires At: 2024-09-29, Price: $3.29, Weight: 1kg, Packaging Unit: Bag, Available: 110
+   14. Item ID: 8374627, Name: White Beans, Canned, 400g, Expires At: 2025-06-17, Price: $1.19, Weight: 400g, Packaging Unit: Can, Available: 150
+
+
+   ----
+
+
+First 5 objects
+
+    
+1. The food item is Organic Cherry Tomatoes with the id: 8376291.
+  2. The expiration date for this product is 2024-09-23. It's important to note that freshness can vary, so it's always a good idea to check the condition before consuming.
+  3. To prolong the shelf life of cherry tomatoes, store them in a cool, dry place away from direct sunlight. They should ideally be refrigerated once opened.
+  4. Here are some creative ways to use cherry tomatoes before they spoil:
+   - Add them to salads for a burst of flavor
+   - Use them as a garnish for pasta dishes or pizzas
+   - Roast them with herbs and olive oil for a tasty side dish
+   - Make a fresh salsa or gazpacho
+  5. To minimize waste, consider the following tips:
+   - Use overripe tomatoes in recipes that call for cooked tomatoes, such as sauces or soups
+   - Freeze tomatoes for later use (either whole, halved, or pureed)
+   - Preserve tomatoes by canning or dehydrating them (for more advanced methods)
