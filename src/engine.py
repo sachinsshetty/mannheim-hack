@@ -7,7 +7,8 @@ def execute_prompt(prompt):
     url = "http://localhost:11434/api/generate"
     headers = {"Content-Type": "application/json"}
     data = {
-        "model": "mistral",
+        #"model": "mistral",
+        "model": "mistral-nemo",
         "prompt": prompt,
         "stream": False
     }
@@ -61,9 +62,9 @@ def get_json_objects():
         print(f"An error occurred: {e}")
     
     # debug - 
-    #first_five_objects = json_object[:5]
-    # return first_five_objects
-    return json_object 
+    first_five_objects = json_object[:5]
+    return first_five_objects
+    #return json_object 
 
 def main():
     

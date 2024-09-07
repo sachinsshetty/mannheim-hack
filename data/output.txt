@@ -43,3 +43,177 @@ First 5 objects
    - Use overripe tomatoes in recipes that call for cooked tomatoes, such as sauces or soups
    - Freeze tomatoes for later use (either whole, halved, or pureed)
    - Preserve tomatoes by canning or dehydrating them (for more advanced methods)
+
+
+
+- Mistral nemo
+
+Here's a summary of the products listed:
+
+**Oils:**
+- **Flaxseed Oil**
+  - Expires: Dec 28, 2024
+  - Price: $8.59
+  - Available: 9 bottles (250 ml each)
+
+- **Peanut Oil**
+  - Expires: Oct 2, 2024
+  - Price: $4.29
+  - Available: 27 bottles (1 l each)
+
+**Dairy:**
+- **Organic Ghee**
+  - Expires: Feb 5, 2025
+  - Price: $14.99
+  - Available: 6 jars (500 ml each)
+
+**Grains and Legumes:**
+
+*Canned:*
+- **Black Beans**
+  - Expires: Aug 2, 2025
+  - Price: $1.29
+  - Available: 200 cans (400g each)
+
+*Dried:*
+- **Kidney Beans** (Organic)
+  - Expires: Oct 25, 2024
+  - Price: $2.49
+  - Available: 63 bags (500g each)
+
+- **Chickpeas**
+  - Expires: Mar 11, 2025
+  - Price: $3.99
+  - Available: 120 bags (1kg each)
+
+- **Lentils** (Green)
+  - Expires: Sep 18, 2024
+  - Price: $1.79
+  - Available: 48 bags (250g each)
+
+- **Pinto Beans**
+  - Expires: Dec 5, 2024
+  - Price: $2.79
+  - Available: 75 bags (500g each)
+
+- **Mung Beans** (Whole)
+  - Expires: Jan 14, 2025
+  - Price: $4.99
+  - Available: 92 bags (1kg each)
+
+- **Fava Beans**
+  - Expires: Nov 9, 2024
+  - Price: $2.29
+  - Available: 35 bags (250g each)
+
+- **Adzuki Beans** (Organic)
+  - Expires: Apr 22, 2025
+  - Price: $3.79
+  - Available: 58 bags (500g each)
+
+- **Soybeans** (Yellow)
+  - Expires: Sep 29, 2024
+  - Price: $3.29
+  - Available: 110 bags (1kg each)
+
+
+  -- less  output
+
+  **Food Item: Organic Cherry Tomatoes**
+
+1. **Name:** Organic Cherry Tomatoes
+2. **Expiration Date:** Please consume by 23rd September 2024 to enjoy them at their freshest.
+3. **Best Storage Practices:**
+   - Store in the refrigerator's crisper drawer, away from ethylene-producing fruits like apples and bananas.
+   - Keep them dry; do not wash before storing as excess moisture can cause spoilage.
+   - Use within 7-10 days after purchase for optimal freshness.
+
+4. **Creative Uses:**
+   - **Caprese Skewers:** Thread cherry tomatoes, mozzarella balls, and basil leaves onto skewers. Drizzle with balsamic glaze and olive oil.
+   - **Tomato Confit:** Slow-roast halved cherry tomatoes with garlic, herbs, and olive oil until caramelized. Use in pasta dishes or spread on bruschetta.
+   - **Gazpacho:** Blend ripe cherry tomatoes with cucumber, bell pepper, breadcrumbs, and seasonings for a refreshing summer soup.
+
+5. **Minimizing Waste:**
+   - **Freeze:** Freeze excess cherry tomatoes whole or cut them in half first to prevent bursting. Use the frozen ones directly in sauces, soups, or stews.
+   - **Dry:** Dehydrate cherry tomatoes in a food dehydrator or low-temperature oven until leather-like. Store in an airtight container for up to a year.
+
+---
+
+**Food Item: Sweet Potatoes**
+
+1. **Name:** Sweet Potatoes
+2. **Expiration Date:** Best consumed by 15th October 2024.
+3. **Best Storage Practices:**
+   - Store in a cool, dark place like the pantry or basement (between 55-65°F/13-18°C).
+   - Keep them away from direct sunlight and heat sources.
+   - Use within 3-5 weeks after purchase for optimal quality.
+
+4. **Creative Uses:**
+   - **Sweet Potato Hummus:** Blend cooked sweet potato with chickpeas, tahini, garlic, and spices for a flavorful dip or spread.
+   - **Sweet Potato Gnocchi:** Make homemade gnocchi using mashed sweet potatoes instead of regular potatoes.
+   - **Baked Sweet Potato Fries:** Cut into fries, toss in oil, salt, pepper, and your favorite seasonings, then bake at 425°F (220°C) until crispy.
+
+5. **Minimizing Waste:**
+   - **Freeze:** Cook excess sweet potatoes, mash, portion into freezer bags, and freeze for up to 10 months.
+   - **Pickle:** Make refrigerator pickles with leftover peelings or small pieces of sweet potato.
+
+---
+
+**Food Item: Broccoli Florets**
+
+1. **Name:** Broccoli Florets
+2. **Expiration Date:** Please consume by 18th September 2024.
+3. **Best Storage Practices:**
+   - Store in the refrigerator's crisper drawer, unwashed and dry.
+   - Use within 5-7 days after purchase for optimal freshness.
+
+4. **Creative Uses:**
+   - **Broccoli Slaw:** Thinly slice broccoli stems and florets to make a slaw with carrots, cabbage, and your favorite dressing.
+   - **Roasted Broccoli Hummus:** Roast broccoli florets until tender, then blend with tahini, garlic, lemon juice, and olive oil for a delicious dip.
+   - **Broccoli & Cheddar Soup:** Blend cooked broccoli with onions, garlic, chicken broth, milk, cheddar cheese, and seasonings for a comforting soup.
+
+5. **Minimizing Waste:**
+   - **Save Stems:** Peel and cut broccoli stems into chunks; they can be used just like broccoli florets in stir-fries, soups, or salads.
+   - **Pickle Stems:** Cut broccoli stems into sticks and pickle them for a tasty snack.
+
+---
+
+**Food Item: Red Bell Peppers**
+
+1. **Name:** Red Bell Peppers
+2. **Expiration Date:** Best consumed by 2nd December 2024.
+3. **Best Storage Practices:**
+   - Store in the refrigerator's crisper drawer, away from ethylene-producing fruits like apples and bananas.
+   - Use within 1-2 weeks after purchase for optimal freshness.
+
+4. **Creative Uses:**
+   - **Stuffed Bell Peppers:** Hollow out bell peppers and fill with your favorite grain or meat mixture, then bake until tender.
+   - **Sweet Pepper Jelly:** Cook down chopped sweet peppers with sugar, apple cider vinegar, and pectin for a unique condiment.
+   - **Roasted Red Pepper Pasta Sauce:** Roast red bell peppers, blend with garlic, olive oil, and seasonings for a quick pasta sauce.
+
+5. **Minimizing Waste:**
+   - **Freeze:** Freeze excess bell pepper strips or pieces in the freezer for use in soups, stews, or sauces.
+   - **Make Pepper Powder:** Dehydrate bell peppers until brittle, then grind into a powder to use as a seasoning.
+
+---
+
+**Food Item: Baby Spinach**
+
+1. **Name:** Baby Spinach
+2. **Expiration Date:** Please consume by 27th September 2024.
+3. **Best Storage Practices:**
+   - Store in the refrigerator's crisper drawer, unwashed and dry.
+   - Use within 5-7 days after purchase for optimal freshness.
+
+4. **Creative Uses:**
+   - **Spinach & Feta Stuffed Chicken:** Mix cooked spinach with crumbled feta cheese, stuff into chicken breasts, then bake until cooked through.
+   - **Green Smoothie Bowl:** Blend spinach with frozen banana, avocado, and other fruits for a nutritious breakfast bowl.
+   - **Spinach & Ricotta Ravioli:** Make homemade ravioli filled with ricotta cheese and baby spinach.
+
+5. **Minimizing Waste:**
+   - **Freeze:** Wash, dry, and chop excess spinach, then freeze in portions suitable for smoothies or cooking.
+   - **Make Green Pesto:** Blend spinach with garlic, pine nuts, Parmesan cheese, and olive oil to make a healthy pesto.
+
+---
+
+By following these storage tips, creative uses, and waste-minimizing strategies, you can help ensure that each food item maintains its freshness and reduces waste. Enjoy your culinary adventures!
