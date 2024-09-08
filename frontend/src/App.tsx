@@ -91,7 +91,11 @@ class App extends Component<{}, AppState> {
 
   sendImageToOllama = async () => {
     
-    const ollamaEndpoint = "http://localhost:5000/recipe_generate" ;
+    const modelName = this.state.selectedModel;
+    
+    //const ollamaEndpoint = "http://localhost:5000/recipe_generate?model_name=${modelName}" ;
+    const ollamaEndpoint = 'http://localhost:5000/recipe_generate/' + modelName;
+    console.log(ollamaEndpoint);
 
     try {
       const response = await  axios.get(ollamaEndpoint);

@@ -16,16 +16,16 @@ def execute_prompt_route():
     result = execute_prompt(prompt)
     return jsonify(result)
 
-@app.route('/recipe_generate', methods=['GET'])
-def bundle_articles_route():
+@app.route('/recipe_generate/<model_name>', methods=['GET'])
+def bundle_articles_route(model_name):
     print('started function call')
     try:
-        json_objs = compute_reduced_prices()
+        json_objs = compute_reduced_prices()    
         obj= json.loads(json_objs)
         print(obj[:10])
         bundle_articles = bundle_function(obj[:10])
-        result = execute_prompt(propose_recipes(bundle_articles))
-    except FileNotFoundError:
+        result = execute_prompt(model_name,propose_recipes(bundle_articles))
+    except FileNotFoundError:   
         print("The file 'articles.json' was not found.")
     except json.JSONDecodeError:
         print("The file 'articles.json' is not a valid JSON file.")
