@@ -1,0 +1,52 @@
+services:
+  ollama:
+    volumes:
+      - ~/ollama/ollama:/root/.ollama
+    container_name: ollama
+    #pull_policy: always
+    tty: true
+    #restart: unless-stopped
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    networks:
+      - app-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+  backend:
+    build: ./backend  # Assuming your backend code is in a directory named 'backend'
+    container_name: backend
+    ports:
+      - 5000:5000  # Map the container port to the host
+    depends_on:
+      - ollama  # Ensure that the ollama service is started before the backend service
+    networks:
+      - app-network
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./front-end:/var/www/front-end
+    ports:
+      - "80:80"
+  frontend:
+    build: ./frontend
+    container_name: mannheim-frontend
+    ports:
+      - 8000:8000  # Map the container port to the host
+    depends_on:
+      - ollama  # Ensure that the ollama service is started before the frontend service
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - app-network
+    environment:
+      - 'VITE_OLLAMA_BASE_URL=http://localhost:11434/api'
+networks:
+  app-network:
+    driver: bridge

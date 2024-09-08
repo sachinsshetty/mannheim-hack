@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
@@ -8,6 +9,8 @@ interface AppState {
   isLoading: boolean;
   models: string[]; 
   selectedModel: string; 
+  responseJson: string;
+
 }
 
 function cleanJsonString(inputString: string) {
@@ -32,7 +35,8 @@ class App extends Component<{}, AppState> {
       response: null,
       isLoading: false,
       models: ['mistral', 'mistral-nemo'], 
-      selectedModel: 'mistral-nemo'
+      selectedModel: 'mistral-nemo',
+      responseJson: '',
     };
   }
 
@@ -87,13 +91,14 @@ class App extends Component<{}, AppState> {
 
   sendImageToOllama = async () => {
     
-    const ollamaEndpoint = "http://127.0.0.1:5000/recipe_generate" ;
+    const ollamaEndpoint = "http://localhost:5000/recipe_generate" ;
 
     try {
       const response = await  axios.get(ollamaEndpoint);
       //console.log('Analyse result:', response.data);
       const respone_data = cleanJsonString(response.data);
-      console.log(respone_data)
+      console.log(respone_data);
+
 
       this.setState({ response: respone_data });
       return response.data;
@@ -131,6 +136,7 @@ class App extends Component<{}, AppState> {
         <div className="response-container">
           <h4>Response:</h4>
           <pre>{JSON.stringify(this.state.response, null, 2)}</pre>
+          <textarea value={this.state.response} readOnly />
         </div>
       )}
       </div>  

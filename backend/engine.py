@@ -7,7 +7,8 @@ import json
 def execute_prompt(prompt):
 
 
-    url = "http://10.211.137.191:11434/api/generate"
+    #url = "http://10.211.137.191:11434/api/generate"
+    url = "http://localhost:11434/api/generate"
     headers = {"Content-Type": "application/json"}
     data = {
         "model": "mistral",
