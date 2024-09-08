@@ -10,12 +10,14 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 8000
+#RUN npm run build
 
+CMD [ "npm", "run", "dev" ]
 ## Stage 2 : deploy
 
-FROM nginx:latest as prod
+#FROM nginx:latest as prod
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+#COPY --from=builder /app/dist /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]

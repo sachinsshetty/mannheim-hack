@@ -27,6 +27,19 @@ services:
       - ollama  # Ensure that the ollama service is started before the backend service
     networks:
       - app-network
+  frontend:
+    build: ./frontend
+    container_name: mannheim-frontend
+    ports:
+      - 8000:8000  # Map the container port to the host
+    depends_on:
+      - ollama  # Ensure that the ollama service is started before the frontend service
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - app-network
+    environment:
+      - 'VITE_OLLAMA_BASE_URL=http://localhost:11434/api'
 networks:
   app-network:
     driver: bridge

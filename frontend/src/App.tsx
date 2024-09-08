@@ -10,6 +10,20 @@ interface AppState {
   selectedModel: string; 
 }
 
+function cleanJsonString(inputString: string) {
+  const prefix = "```json";
+  const suffix = "```";
+  // Check if the string starts with the prefix and ends with the suffix
+  if (inputString.startsWith(prefix) && inputString.endsWith(suffix)) {
+      // Remove the prefix and suffix
+      const cleanedString = inputString.slice(prefix.length, -suffix.length).trim();
+      const jsonObject = JSON.parse(cleanedString);
+      return jsonObject;
+  } else {
+      return inputString; // Return the original string if conditions are not met
+  }
+}
+
 class App extends Component<{}, AppState> {
   ollamaBaseUrl = import.meta.env.VITE_OLLAMA_BASE_URL;
   constructor(props:{}) {
@@ -77,9 +91,11 @@ class App extends Component<{}, AppState> {
 
     try {
       const response = await  axios.get(ollamaEndpoint);
-      console.log(response.data); // Log the response data to the console
-      console.log('Analyse result:', response.data);
-      this.setState({ response: response.data });
+      //console.log('Analyse result:', response.data);
+      const respone_data = cleanJsonString(response.data);
+      console.log(respone_data)
+
+      this.setState({ response: respone_data });
       return response.data;
     } catch (error) {
       console.error('Error Process JSON:', (error as AxiosError).message);
@@ -110,7 +126,7 @@ class App extends Component<{}, AppState> {
               </option>
             ))}
           </select>        
-      </div>    
+      </div>
       {this.state.response && (
         <div className="response-container">
           <h4>Response:</h4>
