@@ -113,7 +113,7 @@ class App extends Component<{}, AppState> {
     <>
     <div className="app-container">
       <p className="read-the-docs">
-        Warehouse UI
+        Supervisor Agent
       </p>
       <div className="input-container">
 
@@ -134,9 +134,8 @@ class App extends Component<{}, AppState> {
       </div>
       {this.state.response && (
         <div className="response-container">
-          <h4>Response:</h4>
-          <pre>{JSON.stringify(this.state.response, null, 2)}</pre>
-          <textarea value={this.state.response} readOnly />
+          <h4>Smart Bundles:</h4>
+          <textarea value={this.state.response} readOnly style={{ width: '600px', height: '600px' }}/>
         </div>
       )}
       </div>  

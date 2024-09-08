@@ -22,6 +22,7 @@ def bundle_articles_route():
     try:
         json_objs = compute_reduced_prices()
         obj= json.loads(json_objs)
+        print(obj[:10])
         bundle_articles = bundle_function(obj[:10])
         result = execute_prompt(propose_recipes(bundle_articles))
     except FileNotFoundError:
