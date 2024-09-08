@@ -27,6 +27,13 @@ services:
       - ollama  # Ensure that the ollama service is started before the backend service
     networks:
       - app-network
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./front-end:/var/www/front-end
+    ports:
+      - "80:80"
   frontend:
     build: ./frontend
     container_name: mannheim-frontend
