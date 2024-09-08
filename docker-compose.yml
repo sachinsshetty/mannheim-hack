@@ -18,15 +18,6 @@ services:
             - driver: nvidia
               device_ids: ['0']
               capabilities: [gpu]
-  backend:
-    build: ./backend  # Assuming your backend code is in a directory named 'backend'
-    container_name: backend
-    ports:
-      - 5000:5000  # Map the container port to the host
-    depends_on:
-      - ollama  # Ensure that the ollama service is started before the backend service
-    networks:
-      - app-network
 networks:
   app-network:
     driver: bridge
