@@ -5,6 +5,10 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def hello():
+    return "<h1 style='color:blue'>Hello There!</h1>"
+
 @app.route('/execute_prompt', methods=['POST'])
 def execute_prompt_route():
     data = request.get_json()

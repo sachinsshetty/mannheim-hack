@@ -1,4 +1,4 @@
-import { Component, ChangeEvent } from 'react';
+import { Component } from 'react';
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
