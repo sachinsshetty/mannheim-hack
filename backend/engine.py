@@ -4,15 +4,15 @@ import requests
 import json
 
 
-def execute_prompt(prompt):
+def execute_prompt(model_name, prompt):
 
 
     #url = "http://10.211.137.191:11434/api/generate"
     url = "http://localhost:11434/api/generate"
     headers = {"Content-Type": "application/json"}
     data = {
-        "model": "mistral",
-        #"model": "mistral-nemo",
+        #"model": "mistral",
+        "model": model_name,
         "prompt": prompt,
         "stream": False
     }
@@ -192,7 +192,8 @@ def main():
         #level_1_prompt = json_parser(obj[:10])
         #execute_prompt(level_1_prompt)
         bundle_articles = bundle_function(obj[:10])
-        execute_prompt(propose_recipes(bundle_articles))
+        model_name = 'mistral-nemo'
+        execute_prompt(model_name,propose_recipes(bundle_articles))
     except FileNotFoundError:
         print("The file 'articles.json' was not found.")
     except json.JSONDecodeError:
